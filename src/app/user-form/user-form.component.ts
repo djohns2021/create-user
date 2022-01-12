@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { getErrorMessage } from '../models/error-messages.model';
 
 @Component({
@@ -8,7 +8,7 @@ import { getErrorMessage } from '../models/error-messages.model';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-  userForm: FormGroup= this.formBuilder.group({});
+  userForm: FormGroup = this.formBuilder.group({});
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -19,7 +19,7 @@ export class UserFormComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       occupation: ['', [Validators.required]],
       state: ['', [Validators.required]],
-    })
+    });
   }
 
   getErrorMessage(formControl: AbstractControl | null): string {

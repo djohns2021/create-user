@@ -1,4 +1,4 @@
-import { AbstractControl, Validators } from "@angular/forms";
+import { AbstractControl, Validators } from '@angular/forms';
 
 export const getErrorMessage = (formControl: AbstractControl | null): string => {
   if (!formControl || !formControl.errors || Object.keys(formControl.errors).length === 0) {
@@ -9,7 +9,7 @@ export const getErrorMessage = (formControl: AbstractControl | null): string => 
   const errorName = Object.keys(formControl.errors)[0];
   let errorMessage = '';
 
-  switch(errorName) {
+  switch (errorName) {
     // Hardcoded because the validators name come back in a weird casing
     case 'minlength': {
       errorMessage = `Must be ${formControl.errors.minlength.requiredLength} characters long`;
@@ -31,4 +31,4 @@ export const getErrorMessage = (formControl: AbstractControl | null): string => 
   }
 
   return errorMessage;
-}
+};
