@@ -1,0 +1,34 @@
+<div class="create-user-form">
+  <form [formGroup]="userForm">
+    <h2>Sign up!</h2>
+    <div class="form">
+      <!-- Name -->
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name"/>
+        <mat-error *ngIf="showError(userForm.get('name'))">{{getErrorMessage(userForm.get('name'))}}</mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email"/>
+        <mat-error *ngIf="showError(userForm.get('email'))">{{getErrorMessage(userForm.get('email'))}}</mat-error>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password"/>
+        <mat-error *ngIf="showError(userForm.get('password'))">{{getErrorMessage(userForm.get('password'))}}</mat-error>
+      </mat-form-field>
+
+      <!-- Occupation -->
+      <mat-form-field >
+        <mat-label>Occupation</mat-label>
+        <input matInput formControlName="occupation"/>
+        <mat-error *ngIf="showError(userForm.get('occupation'))">{{getErrorMessage(userForm.get('occupation'))}}</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
