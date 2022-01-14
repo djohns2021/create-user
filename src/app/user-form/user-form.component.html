@@ -1,5 +1,5 @@
 <div class="create-user-form">
-  <form [formGroup]="userForm">
+  <form [formGroup]="userForm" *ngIf="(infoLoaded$ | async); else loader">
     <h2>Sign up!</h2>
     <div class="form">
       <!-- Name -->
@@ -26,9 +26,30 @@
       <!-- Occupation -->
       <mat-form-field >
         <mat-label>Occupation</mat-label>
-        <input matInput formControlName="occupation"/>
-        <mat-error *ngIf="showError(userForm.get('occupation'))">{{getErrorMessage(userForm.get('occupation'))}}</mat-error>
+        <input type="text" matInput formControlName="occupation" [matAutocomplete]="occAuto">
+        <mat-autocomplete #occAuto="matAutocomplete">
+          <mat-option *ngFor="let occupation of filteredOccupations$ | async" [value]="occupation">
+            {{occupation}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <!-- States -->
+      <mat-form-field >
+        <mat-label>State</mat-label>
+        <input type="text" matInput formControlName="state" [matAutocomplete]="statesAuto">
+        <mat-autocomplete #statesAuto="matAutocomplete" [displayWith]="displayState">
+          <mat-option *ngFor="let state of filteredStates$ | async" [value]="state">
+            {{state.name}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
     </div>
   </form>
 </div>
+
+<ng-template #loader>
+  <div class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</ng-template>
