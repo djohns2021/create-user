@@ -37,7 +37,7 @@ export class AppEffects {
             this.snackBar.open(
               'Your user was created successfully!',
               undefined,
-              { duration: 10, verticalPosition: 'top' }
+              { duration: 10000, verticalPosition: 'top' }
             );
             return CreateUserActions.submitUserInfoSuccess();
           }),
@@ -45,7 +45,7 @@ export class AppEffects {
             this.snackBar.open(
               'There was an error creating your user, please try again later.',
               undefined,
-              { duration: 10, verticalPosition: 'top' }
+              { duration: 10000, verticalPosition: 'top' }
             );
             return of(CreateUserActions.submitUserInfoError({ error }));
           })
