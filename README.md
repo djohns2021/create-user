@@ -1,5 +1,23 @@
 # CreateUser
 
+## Running the project
+
+After cloning the project, the dependencies need to be installed:
+```shell
+yarn install
+```
+
+
+After the dependencies are installed, the dev server can be started via:
+```shell
+yarn start
+```
+The dev server is reachable at http://localhost:4200/
+
+Note: `npm` should work as well.
+
+## Angular Generated Docs 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
 
 ## Development server
