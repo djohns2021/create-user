@@ -6,14 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { combineLatest, interval, Observable, of } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { getErrorMessage } from '../models/error-messages.model';
 import { UserForm } from '../models/user-form.model';
-import { RegistrationService } from '../registration.service';
-import { LoadCreateUserFormInfo } from '../store/create-user.actions';
+import { LoadCreateUserFormInfo, submitUserInfo } from '../store/create-user.actions';
 import * as CreateInfoSelectors from '../store/app.selectors';
-import { RootState } from '../store';
-import { debounce, filter, map, startWith, tap, withLatestFrom } from 'rxjs/operators';
+import { filter, map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-form',
@@ -46,7 +44,6 @@ export class UserFormComponent implements OnInit {
   constructor(
     private store: Store,
     private formBuilder: FormBuilder,
-    private registrationService: RegistrationService
   ) {}
 
   ngOnInit(): void {
@@ -76,9 +73,9 @@ export class UserFormComponent implements OnInit {
         .get('occupation')
         ?.valueChanges.pipe(startWith('')) as Observable<string>,
     ]).pipe(
-      map(([occupations, filter]) =>
+      map(([occupations, f]) =>
         occupations?.filter((o: string) =>
-          o.toLowerCase().includes(filter?.toLowerCase())
+          o.toLowerCase().includes(f?.toLowerCase())
         )
       )
     );
@@ -95,7 +92,7 @@ export class UserFormComponent implements OnInit {
           (s) =>
             s.name.toLowerCase().includes(f?.toLowerCase()) ||
             s.abbreviation.toLowerCase().includes(f?.toLowerCase())
-        )
+        );
       })
     );
   }
@@ -114,7 +111,9 @@ export class UserFormComponent implements OnInit {
   }
 
   submitForm(): void {
-    const userData: UserForm = this.userForm.value;
-    this.registrationService.saveRegistrationInfo(userData);
+    if (this.userForm.valid) {
+      const userForm: UserForm = this.userForm.value;
+      this.store.dispatch(submitUserInfo({userForm}));
+    }
   }
 }

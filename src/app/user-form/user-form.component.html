@@ -1,5 +1,5 @@
 <div class="create-user-form">
-  <form [formGroup]="userForm" *ngIf="(infoLoaded$ | async); else loader">
+  <form [formGroup]="userForm" *ngIf="(infoLoaded$ | async); else loader" (ngSubmit)="submitForm()">
     <h2>Sign up!</h2>
     <div class="form">
       <!-- Name -->
@@ -44,6 +44,10 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-stroked-button [disabled]="userForm.invalid">Submit</button>
     </div>
   </form>
 </div>

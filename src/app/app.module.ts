@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserFormComponent } from './user-form/user-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -19,6 +20,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AppEffects } from './store/app.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, UserFormComponent],
@@ -33,6 +35,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MatInputModule,
     MatCardModule,
     MatAutocompleteModule,
+    MatButtonModule,
+    MatSnackBarModule,
     MatProgressSpinnerModule,
     StoreModule.forRoot({ root: StoreReducer }, {}),
     EffectsModule.forRoot([AppEffects]),

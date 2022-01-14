@@ -23,7 +23,7 @@ export class RegistrationService {
     return this.http.get<FormRegistrationResponse>('https://frontend-take-home.fetchrewards.com/form');
   }
 
-  saveRegistrationInfo(info: UserForm): void {
-    this.http.post('https://frontend-take-home.fetchrewards.com/form', info);
+  saveRegistrationInfo(info: UserForm): Observable<any> {
+    return this.http.post('https://frontend-take-home.fetchrewards.com/form', info);
   }
 }
