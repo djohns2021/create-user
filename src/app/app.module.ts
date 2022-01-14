@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
+// import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, UserFormComponent],
@@ -25,7 +25,7 @@ import { StoreModule } from '@ngrx/store';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    StoreModule.forRoot({}, {}),
+    // StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],
