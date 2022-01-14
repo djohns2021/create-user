@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { getErrorMessage } from '../models/error-messages.model';
+import { UserForm } from '../models/user-form.model';
+import { RegistrationService } from '../registration.service';
 
 @Component({
   selector: 'app-user-form',
@@ -9,8 +11,10 @@ import { getErrorMessage } from '../models/error-messages.model';
 })
 export class UserFormComponent implements OnInit {
   userForm: FormGroup = this.formBuilder.group({});
+  states: {name: string, abbreviation: string}[] = [];
+  occupations: string[] = [];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private registrationService: RegistrationService) {}
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
@@ -28,6 +32,11 @@ export class UserFormComponent implements OnInit {
 
   showError(formControl: AbstractControl | null): boolean {
     return !!formControl?.invalid && formControl.touched;
+  }
+
+  submitForm(): void {
+    const userData: UserForm = this.userForm.value;
+    this.registrationService.saveRegistrationInfo(userData);
   }
 
 }
